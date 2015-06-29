@@ -6,9 +6,12 @@ description: > # this means to ignore newlines until "baseurl:"
   QQ:517377100<br>
   E-mail:ljsunlin@126.com
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://hungryant.github.com" # the base hostname & protocol for your site
+url: "http://hungryant.github.io" # the base hostname & protocol for your site
 twitter_username: 
 github_username:  HungryAnt
 
 # Build settings
 markdown: kramdown
+
+# use UTC timezone by Ant
+timezone: UTC
