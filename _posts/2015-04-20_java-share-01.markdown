@@ -1,0 +1,307 @@
+---
+layout: post
+title:  "java开发技术分享 第一期"
+date:   2015-04-22 18:00:00
+categories: java
+---
+
+### 目的
+
+- 一线coder，分享一些比较好的编码实践经验
+- 促进交流，互相学习，避免重复调研、重复采坑。让新同学技术上得到成长
+
+### 热身
+
+	// s 为字符串
+	
+	if (...) { // 问题1：如何检测s是否为空
+		return;
+	}
+	if (s == "abc") { // 问题2：该语句是否正确
+	}
+
+	// 问题3：以下switch用法是否正确
+	switch (s) {
+		case "a":
+			...
+			break;
+		case "b":
+			...
+			break;
+		default:
+			...
+	}
+
+- StringUtils.isBlank(s)
+- "abc".equals(s)
+- java 7 switch语法支持字符串比对
+
+java 7 语法上还引入了哪些新功能，现举一例
+
+	FileInputStream inputStream;
+	try {
+		inputStream = new FileInputStream(filePath);
+		...
+	} catch () {
+		...
+	} finally {
+		inputStream.close();
+	}
+
+使用java 7支持的 try with resourc (类似c#中的using)
+
+	try (FileInputStream inputStream = new FileInputStream(filePath)) {
+		...
+	} catch () {
+		...
+	}
+
+FileInputStream实现了Closeable接口，Closeable接口继承自AutoCloseable接口
+
+### 一次重构实践
+
+[risk-auto-audit-task 模块 FileUtils一处代码重构](http://cooder.baidu.com/716903/)
+
+重构步骤
+- step1
+
+	 改为使用try-with-resource，去除多余的finally子句，同时避免释放逻辑遗漏调用。
+
+	 一处for语句改为foreach
+
+- step2
+
+	消除字符串路径拼接逻辑
+
+	消除重复代码
+
+- step3
+	
+	性能改进？？？
+
+> 观点：utils应可供复用，因此其实现需清晰，易于理解
+ 
+这是一次演习，并非一次正确的重构，为什么**不正确**？ 
+
+> 观点：关注编码细节，细节中自有洞天
+
+### 开发中一些较优秀的实践
+
+#### 适度封装，减少重复代码
+
+例如
+查询获取数据总数
+
+	select count(*) from xxx;
+
+查询用户xx数据
+	
+	select xx from xxx where user_id = 'xxx';
+
+已过时的不推荐使用的方法 queryForInt，queryForObject，当找不到数据时，抛异常
+
+正确方式是使用query，并定义IntegerMapper，需要定义Mapper
+
+JdbcTemplateUtility.java 做了什么 见JdbcTemplateUtility.getIntegerValue()
+
+> 现在部分同学已经在项目中使用Mybatis，不再需要考虑这个问题
+
+#### sql generator的作用
+
+> 晓倩的疑问：某个接口返回分页数据，支持多种条件筛选，过滤操作在sql中做的，拼sql很麻烦，怎么办？
+
+两种解决方法
+
+1. 基于jdbcTemplate，使用sql generator合理拼接sql语句，合理构建参数列表
+	 （见fp-invoice **InvoiceQuerySqlGenerator.java**）
+
+2. 基于mybatis，有更合适的解决方案，具体方案留待下期介绍。将在mapper.xml配置<where>元素，支持使用<if>判断，动态构建sql语句
+
+#### Joda DateTime 的使用
+
+不推荐使用java.util.Date，不建议使用java.sql.Timestamp
+
+使用Joda Datetime类型处理所有日期时间逻辑
+
+一开始就处理好时区，统一UTC，严谨处理每一处时间操作，未来就不会采坑
+
+- 时间增加两个月
+
+	业务逻辑中常常会做月份计算，比如，从1.31日起计算，为期2个月，结果日期是什么？
+	
+	如下两种方式得到的结果不同
+		DateTime endTime1 = dateTime.plusMonths(1).plusMonths(1);
+				DateTime endTime2 = dateTime.plusMonths(2);
+
+- 获取当前时间
+	
+		DateTime now = DateTime.now()
+
+- 字符串转时间
+
+		DateTime dateTime = DateTime.parse("2015-01-01T16:00:00Z")
+
+- 北京时间"2015-1-1"如何转化为 UTC时间
+	 
+	private static DateTimeFormatter beijingDateTimeFormat = 
+			DateTimeFormat.forPattern("yyyy-MM-dd").withZone(DateTimeZone.forOffsetHours(8));
+	public static DateTime toDateTime(String beijingDateTimeText) {
+		DateTime dateTime = DateTime.parse(beijingDateTimeText, beijingDateTimeFormat).withTime(0, 0, 0, 0);
+		return dateTime.toDateTime(DateTimeZone.UTC);
+	}
+
+- 获取北京时间今日凌晨
+
+	public static DateTime today() {
+		return DateTime.now(DateTimeZone.forOffsetHours(8)).withTime(0, 0, 0, 0).withZone(DateTimeZone.UTC);
+	}
+
+- 时区转换
+		
+	dateTime = dateTime.withZone(DateTimeZone.UTC);
+	dateTime = dateTime.withZone(DateTimeZone.forOffsetHours(8));
+
+使用DateTime类型的字段，序列化支持，Pojo类型定义如下
+
+	public class Invoice {
+		private long id;
+		private long fcId; // 凤巢发票id
+		private String uuid; // 凤巢发票系统标记Bce发票
+		private String userId; // 关联用户
+
+		@JsonSerialize(using = UTCDateTimeSerializer.class)
+		@JsonDeserialize(using = UTCDateTimeDeserializer.class)
+		private DateTime ctime; // 创建时间，及申请发票时间
+
+		@JsonSerialize(using = UTCDateTimeSerializer.class)
+		@JsonDeserialize(using = UTCDateTimeDeserializer.class)
+		private DateTime mtime; // 更新时间
+		...
+	}
+
+DateTime类型的字段加注解使用本人提供的类型UTCDateTimeSerializer与UTCDateTimeDeserializer，
+后续会创建团队内部使用的common类库
+
+> JdbcTemplate兼容DateTime，见先前的 [统一时区统一方案wiki](http://wiki.baidu.com/pages/viewpage.action?pageId=63811799)
+> 
+> Mybatis兼容DateTime，见附录
+
+#### 异步任务加锁
+
+> 源自远哥的调研结论，使用mysql数据库进行加锁同步
+
+finance代码中给予更好的实现，fp-invoice 中定时任务加锁代码
+
+	@Scheduled(fixedDelayString = "${invoiceRefreshTaskDelayMillis}")
+	public void runTask() {
+		if (!invoiceRefreshSchedulerEnabled) {
+			return;
+		}
+		try (TaskLocker taskLocker = new TaskLocker(taskLockService, TASK_NAME, INTERVAL_MILLIS)) {
+			if (taskLocker.isLocked()) {
+				logger.info("taskLocker locked success, start refreshInvoices task");
+				invoiceService.refreshInvoices();
+				logger.info("finish refreshInvoices task");
+			}
+		} catch (Exception e) {
+			logger.error("InvoiceRefreshScheduler runTask exception", e);
+		}
+	}
+
+详细内容看代码 InvoiceRefreshScheduler
+
+#### Mybatis强大之处
+
+优势
+- 简化Dao开发（Dao类型对应Mybatis中即为Mapper）
+- 代码sql分离
+- 动态sql拼接
+
+关于第二点
+
+> 官网教程说明
+> 
+> 对于简单语句来说，注解使代码显得更加简洁，然而 Java 注解对于稍微复杂的语句就会力不从心并且会显得更加混乱。因此，如果你需要做很复杂的事情，那么最好使用 XML 来映射语句。
+> 
+> 选择何种方式以及映射语句的定义的一致性对你来说有多重要这些完全取决于你和你的团队。换句话说，永远不要拘泥于一种方式，你可以很轻松的在基于注解和 XML 的语句映射方式间自由移植和切换。
+
+**看一个例子**
+
+两张表 users、authorities，users记录用户，authorities记录权限
+
+users表数据包含如下3行数据
+
+	mysql> select * from users;
+	+----------+--------------------------------------------------------------+---------+---------------------+
+	| username | password                                                     | enabled | ctime               |
+	+----------+--------------------------------------------------------------+---------+---------------------+
+	| ant      | $2a$10$IKFc5NLW1Il4ZMt71LwSGeIPBGsMpt1fxJoVmwfJID5UUEIWlQzya |       1 | 2014-12-31 16:00:00 |
+	| t1       | $2a$10$W9mIT9/xzZ06vf8HfSPzd.Av2fUx.KM8J/5HpKjuk/5q1Ma3Nx45q |       1 | 2015-03-31 16:00:00 |
+	| t2       | $2a$10$nqaesAdZQVx7N80TVlyHMOv3Uhn2T8nL5qkF4SUtEAElBg2bcihOq |       1 | 2015-04-20 21:53:01 |
+	+----------+--------------------------------------------------------------+---------+---------------------+
+
+authorities表数据
+
+	mysql> select * from authorities;
+	+----------+------------------+
+	| username | authority        |
+	+----------+------------------+
+	| ant      | ROLE_ADMIN       |
+	| ant      | ROLE_SUPER_ADMIN |
+	| ant      | ROLE_USER        |
+	| t1       | ROLE_USER        |
+	| t2       | ROLE_USER        |
+	+----------+------------------+
+
+java model类型定义如下
+
+	public class User {
+		private String username;
+		private String password;
+		private DateTime ctime;
+		private List<UserAuthority> authorities;
+		...
+	}
+
+如何加载db中的数据，生成User对象，该对象authorities中包含权限集合，如表中ant具有3个权限，则authorities集合size为3
+
+**体验一下Mybatis的高级结果映射**
+
+UserMapper.xml
+
+	...
+	<resultMap id="detailedUserResultMap" type="User">
+		<id property="username" column="username"/>
+		<result property="ctime" column="ctime" typeHandler="DateTimeTypeHandler"/>
+		<collection property="authorities" ofType="UserAuthority">
+			<result property="username" column="username"/>
+			<result property="authority" column="authority"/>
+		</collection>
+	</resultMap>
+	<select id="listUsers" resultMap="detailedUserResultMap">
+		SELECT u.username as username, u.ctime as ctime, a.authority as authority
+		FROM users u LEFT JOIN authorities a ON u.username = a.username
+	</select>
+	...
+
+联表查询结果显示如下
+
+	mysql> SELECT u.username as username, u.ctime as ctime, a.authority as authority
+			->         FROM users u LEFT JOIN authorities a ON u.username = a.username;
+	+----------+---------------------+------------------+
+	| username | ctime               | authority        |
+	+----------+---------------------+------------------+
+	| ant      | 2014-12-31 16:00:00 | ROLE_ADMIN       |
+	| ant      | 2014-12-31 16:00:00 | ROLE_SUPER_ADMIN |
+	| ant      | 2014-12-31 16:00:00 | ROLE_USER        |
+	| t1       | 2015-03-31 16:00:00 | ROLE_USER        |
+	| t2       | 2015-04-20 21:53:01 | ROLE_USER        |
+	+----------+---------------------+------------------+
+
+通过resultMap做结果映射，实现目标
+
+>观点：采用优秀的开发时间，可以提高开发效率，提升产品质量 ~不过这些是次要的，重要的是开发起来 爽！
+
+>观点：作为3年+老员工，我们要产出高品质的作品，让新人在参与开发的过程中，能够学到东西
+
+> 仅仅编写出能够有效地工作并且能够被别人理解的代码往往是不够的,我们还必须要把代码组织成易于修改的形式.针对一个任务我们可能会有10种不同的编码方法,而在这10种方法中,有7种方法是笨拙的.低效的或者是难以理解的.而在剩下的3种编码方法中,哪一种会最接近该任务的下一年度版本的代码呢？
