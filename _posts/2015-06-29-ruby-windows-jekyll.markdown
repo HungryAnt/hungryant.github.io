@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "windows环境 搭建jekyll博客服务"
+title:  "windows环境安装jekyll"
 date:   2015-06-29 23:00:00
 categories: ruby
 ---
@@ -57,7 +57,6 @@ categories: ruby
 	使用gem下载安装jekyll及其所有依赖库
 
 		gem install jekyll
-
 
 
 PS
