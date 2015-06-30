@@ -37,5 +37,14 @@ ctrl+shift+alt+n: In addition to creating the folders specified, new folders wil
 
 [For more information](https://github.com/skuroda/Sublime-AdvancedNewFile)
 
-### 
+### Git
+
+command中执行
+
+	git add
+	
+	git commit (编写完log，执行ctrl+w跳出)
+	
+	git push
+
 
