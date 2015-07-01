@@ -2,7 +2,8 @@
 layout: post
 title:  "WPF技术分享"
 date:   2014-04-20 00:00:00
-categories: 
+categories: wpf
+author: 麟大大
 ---
 
 ## WPF概述
