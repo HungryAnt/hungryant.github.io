@@ -2,7 +2,7 @@
 layout: post
 title:  "糟糕的开发经历-01"
 date:   2015-07-03 00:00:00
-categories: 经验
+categories: experience
 author: 麟大大
 ---
 
