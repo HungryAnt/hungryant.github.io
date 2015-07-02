@@ -2,9 +2,7 @@
 title: 麟大大的程序世界
 email: ljsunlin@126.com
 description: > # this means to ignore newlines until "baseurl:"
-  我通过代码实现了一款软件，同时也通过优雅的代码向其中注入灵魂<br>
-  QQ:517377100<br>
-  E-mail:ljsunlin@126.com
+  我通过代码实现了一款软件，同时也通过优雅的代码向其中注入灵魂
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://hungryant.github.io" # the base hostname & protocol for your site
 twitter_username: 
