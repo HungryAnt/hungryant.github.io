@@ -47,7 +47,7 @@ Winforms/MFC/VB等提供不同API，但底层都是使用相同部分来工作�
 
 ### 体系结构
 
-![体系结构](/image/posts/2014-04-20-cs-wpf-share-01.png)
+![体系结构](http://7xk402.com1.z0.glb.clouddn.com/blog_2014-04-20-cs-wpf-share-01.png)
 
 ## XAML
 
@@ -84,9 +84,9 @@ Demo演示：Coding Demo09_Xaml
 - 抵制基于坐标的布局注重创建灵活的布局，以使布局能够适应内容的变化
 - WPF窗口只能包含一个元素，需要在窗口上放置一个容器，然后在容器中添加其他元素
 
-![im](/image/posts/2014-04-20-cs-wpf-share-02.png)
+![im](http://7xk402.com1.z0.glb.clouddn.com/blog_2014-04-20-cs-wpf-share-02.png)
 
-![layout](/image/posts/2014-04-20-cs-wpf-share-03.jpg)
+![layout](http://7xk402.com1.z0.glb.clouddn.com/blog_2014-04-20-cs-wpf-share-03.jpg)
 
 ### 布局重要原则
 
@@ -127,7 +127,7 @@ Demo演示：Coding Demo09_Xaml
 - UniformGrid
 - Canvas
 
-![The hierarchy of the Panel class](/image/posts/2014-04-20-cs-wpf-share-04.jpg)
+![The hierarchy of the Panel class](http://7xk402.com1.z0.glb.clouddn.com/blog_2014-04-20-cs-wpf-share-04.jpg)
 
 
 ### 控件
@@ -158,7 +158,7 @@ WPF包含几类控件
 
 Demo05 内容控件
 
-![demo05截图](/image/posts/2014-04-20-cs-wpf-share-05.jpg)
+![demo05截图](http://7xk402.com1.z0.glb.clouddn.com/blog_2014-04-20-cs-wpf-share-05.jpg)
 
 更多WPF控件
 
@@ -262,6 +262,6 @@ WPF、Silverlight、WP7软件中常用的架构模式
 	- ViewModel对View完全不知晓
 	- ViewModel与Model直接交互，目的是准备好数据以便View进行数据绑定
 
-![mvvm 图示](/image/posts/2014-04-20-cs-wpf-share-06.png)
+![mvvm 图示](http://7xk402.com1.z0.glb.clouddn.com/blog_2014-04-20-cs-wpf-share-06.png)
 
-![mvvm 图示](/image/posts/2014-04-20-cs-wpf-share-07.png)
+![mvvm 图示](http://7xk402.com1.z0.glb.clouddn.com/blog_2014-04-20-cs-wpf-share-07.png)

@@ -69,7 +69,7 @@ categories: java
 
 如对于数据库中的table app
 
-![table app](/image/posts/2015-02-12-java-spring-jdbctemplate-01.jpg)
+![table app](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-02-12-java-spring-jdbctemplate-01.jpg)
 
 建立对应的Dao派生类
 
@@ -274,7 +274,7 @@ HSQLDB是一个开放源代码的JAVA数据库，其具有标准的SQL语法和J
 	
 	如下截图，显示SQL执行成功
 
-	![HSQL Database Manager截图](/image/posts/2015-02-12-java-spring-jdbctemplate-02.jpg)
+	![HSQL Database Manager截图](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-02-12-java-spring-jdbctemplate-02.jpg)
 
 	上图SQL语句如下
 
