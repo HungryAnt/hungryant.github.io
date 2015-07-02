@@ -3,6 +3,7 @@ layout: post
 title:  "H2 database 对timestamp on update语法不支持"
 date:   2015-06-30 00:00:00
 categories: database
+tags: [mysql, h2, database]
 ---
 
 Mysql DDL

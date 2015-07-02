@@ -18,3 +18,7 @@ timezone: UTC
 
 # 默认文章作者
 author: 麟大大
+
+
+paginate: 10
+paginate_path: "page:num"

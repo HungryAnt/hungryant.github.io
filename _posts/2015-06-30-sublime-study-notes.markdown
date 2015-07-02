@@ -3,6 +3,7 @@ layout: post
 title:  "sublime学习笔记"
 date:   2015-06-30 23:27:04
 categories: sublime
+tags: [sublime, tools]
 ---
 
 ## 快捷键

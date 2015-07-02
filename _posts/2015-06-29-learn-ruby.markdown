@@ -3,6 +3,7 @@ layout: post
 title:  "Ruby 学习"
 date:   2015-06-29 20:29:15
 categories: ruby
+tags: [ruby]
 ---
 
 ### Hello World

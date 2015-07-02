@@ -1,16 +1,16 @@
 .home {
   font-size:        105%;
   padding:          0px;
-  margin:           0px 10px 10px 10px;
-  margin-right: 330px;
+  // margin:           0px 10px 10px 10px;
+  // margin-right: 330px;
 }
 
-.home-side-bar {
+/* .home-side-bar {
   padding:          0px;
   margin:           0px 10px 10px 10px;
   float:            right;
   width:            280px;
-}
+} */
 
 .site-custom-nav {
   background-color: #169fe6;
@@ -44,4 +44,23 @@ ul#nav {
       background:#0059AA
     }
   } 
-} 
+}
+
+.pagination {
+  a, span {
+    // float: left;
+    height: 40px;
+    line-height: 50px;
+    margin-right: 5px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    width: auto;
+    padding: 0 8px;
+  }
+  a {
+    background: none repeat scroll 0 0 #FFF;
+    border: 1px solid #E7ECF0;
+    color: #0000CD;
+  }
+}

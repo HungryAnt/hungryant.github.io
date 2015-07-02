@@ -3,6 +3,7 @@ layout: post
 title:  "ruby on rails 学习笔记"
 date:   2015-07-01 00:00:00
 categories: ruby
+tags: [ruby, ruby on rails]
 ---
 
 安装rails

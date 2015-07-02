@@ -3,6 +3,7 @@ layout: post
 title:  "windows环境安装jekyll"
 date:   2015-06-29 23:00:00
 categories: ruby
+tags: [jekyll]
 ---
 
 步骤整理如下
