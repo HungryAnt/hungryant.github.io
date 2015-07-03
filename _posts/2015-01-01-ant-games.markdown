@@ -2,7 +2,7 @@
 layout: post
 title:  "多年前的一些有趣的程序"
 date:   2015-01-01 00:00:00
-categories: 
+categories: art
 ---
 
 **收录我早期的一些小游戏作品，我对游戏编程兴趣其实不曾减少**
