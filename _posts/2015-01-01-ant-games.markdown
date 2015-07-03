@@ -1,0 +1,114 @@
+---
+layout: post
+title:  "多年前的一些有趣的程序"
+date:   2015-01-01 00:00:00
+categories: 
+---
+
+**收录我早期的一些小游戏作品，我对游戏编程兴趣其实不曾减少**
+
+### 某游戏
+
+游戏名： 某游戏（模仿超级马里奥demo）
+
+生产日期: 10年春节期间，利用3天时间实现
+
+技术： C + Windows API
+
+后来通过地图编辑器实现了一个是男人上100层的跳跃类关卡
+
+![某游戏截图](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-01.jpg)
+
+![某游戏截图](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-02.jpg)
+
+地图编辑器
+
+![某游戏截图](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-03.jpg)
+
+
+### 汉诺塔
+
+游戏名: 汉诺塔
+
+生产日期: 11年9月
+
+技术: C++ DirectUI自定义绘图控件
+
+![汉诺塔截图](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-04.jpg)
+
+![汉诺塔截图](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-05.jpg)
+
+![汉诺塔截图](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-06.jpg)
+
+![汉诺塔截图](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-07.jpg)
+
+![汉诺塔截图](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-08.jpg)
+
+游戏中任意时刻点击笑脸，可以自动计算完成游戏
+
+![汉诺塔截图](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-09.jpg)
+
+[游戏下载地址](http://files.cnblogs.com/gods/Gods%E7%9B%8A%E6%99%BA%E6%B8%B8%E6%88%8F-%E6%B1%89%E8%AF%BA%E5%A1%94%E6%AD%A3%E5%BC%8F%E7%89%88v1.0.zip)
+
+
+### 游戏发展国flash版
+
+游戏名: 游戏大亨（游戏发展国flash版）
+
+生产日期: 11年10月
+
+技术: 纯AS3
+
+![游戏大亨截图](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-10.jpg)
+
+![游戏大亨截图](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-11.jpg)
+
+第二次来上海，在一家网页游戏公司实习，练习类项目，代码量约4000，我承担主程工作
+
+这家公司出过一个叫“傲视风云”的游戏
+
+PS: 后来才知道开罗游戏公司推出了很多款模拟经营类游戏，像素类游戏，玩法丰富，非常有意思
+
+
+### 坦克大战
+
+游戏名: 蚁爷的坦克大战
+
+生产日期: 09年7月 3天时间
+
+技术: C
+
+![坦克大战截图](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-12.jpg)
+
+![坦克大战截图](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-13.jpg)
+
+![坦克大战截图](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-14.jpg)
+
+1400来行核心代码
+
+PS: 其实 蚁爷出品，纯属自娱自乐
+
+
+
+###　早期作品
+
+游戏名: 扫雷/俄罗斯方块/贪吃蛇
+
+生产日期:　07年
+
+技术: C
+
+[下载地址](http://download.csdn.net/download/ljsunlin/320718)
+
+![早期作品](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-15.png)
+
+![早期作品](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-16.png)
+
+![早期作品](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-17.png)
+
+![早期作品](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-18.png)
+
+![早期作品](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-19.png)
+
+![早期作品](http://7xk402.com1.z0.glb.clouddn.com/blog_2015-01-01-ant-games-20.png)
+
