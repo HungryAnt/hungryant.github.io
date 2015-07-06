@@ -9,7 +9,7 @@ categories: Mybatis
 
 **typeHandlers**
 
-[复习阅读官方文档 typeHandlers 一节](http://mybatis.github.io/mybatis-3/zh/configuration.html){:target="_blank"}
+[阅读官方文档 typeHandlers 一节](http://mybatis.github.io/mybatis-3/zh/configuration.html){:target="_blank"}
 
 MyBatis 在预处理语句（PreparedStatement）中设置一个参数时，Java对象将通过ps.setInt、ps.setString、ps.setTimeStamp等方法转换成数据库需要的数据
 
