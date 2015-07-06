@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Mybatis特殊值Enum类型转换器-ValuedEnumTypeHanlder"
-date:   2015-01-01 00:00:00
+title:  "Mybatis特殊值Enum类型转换器-ValuedEnumTypeHandler"
+date:   2015-07-06 23:18:42
 categories: Mybatis
 ---
 
@@ -9,26 +9,24 @@ categories: Mybatis
 
 **typeHandlers**
 
-MyBatis 在预处理语句（PreparedStatement）中设置一个参数时，Java对象将转换成数据库需要的数据格式，通过`ps.setInt`、`ps.setString`、`ps.setTimeStamp`等方法完成
+[复习阅读官方文档 typeHandlers 一节](http://mybatis.github.io/mybatis-3/zh/configuration.html){:target="_blank"}
 
-在从结果集（ResultSet）中取出一个值时，则需要将数据库中获取到的数据转换为Java对象，其中会使用到`rs.getInt`、`rs.getString`、`rs.getTimeStamp`等方法
+MyBatis 在预处理语句（PreparedStatement）中设置一个参数时，Java对象将通过ps.setInt、ps.setString、ps.setTimeStamp等方法转换成数据库需要的数据
+
+在从结果集（ResultSet）中取出一个值时，将使用rs.getInt、rs.getString、rs.getTimeStamp等方法将数据转换为Java对象
 
 这两类操作通过 **类型处理器** 完成
 
 - 类型处理器均实现`TypeHandler<T>`接口，所有基本类型均有对应的类型处理器
 
-	[阅读官方文档 typeHandlers 一节](http://mybatis.github.io/mybatis-3/zh/configuration.html){:target="_blank"}
-
 - Enum对应有两个类型处理器，分别为`EnumTypeHandler`、`EnumOrdinalTypeHandler`
 	
-	若需要将Enum类型的字段映射为数据库中的字符串，则使用`EnumTypeHandler`。 
+	若需将Enum字段映射为字符串，则使用`EnumTypeHandler`。 (默认使用)
 
-	> 默认情况下，MyBatis 会利用 EnumTypeHandler 来把 Enum 值转换成对应的名字。
-
-	若需要将Enum字段映射为int数值，则使用`EnumOrdinalTypeHandler`
+	若需将Enum字段映射为int数值，则使用`EnumOrdinalTypeHandler`
 
 
-但是`EnumOrdinalTypeHandler`局限性非常明显，其映射的数据直接使用枚举值的`ordinal`数值，与枚举值定义顺序紧耦合，本文将解决此问题
+然而，`EnumOrdinalTypeHandler`局限性非常明显，其映射的数据直接使用枚举值的`ordinal`数值，因此与枚举值定义顺序紧耦合，**本文将解决此问题**
 
 
 ## 一般合理实现方案（针对每一种特定值Enum定义专属TypeHandler）
@@ -97,7 +95,7 @@ MyBatis 在预处理语句（PreparedStatement）中设置一个参数时，Java
 
 	    private int value;
 
-	    private PayMethod(int value) {
+	    private ProductType(int value) {
 	        this.value = value;
 	    }
 
@@ -106,13 +104,13 @@ MyBatis 在预处理语句（PreparedStatement）中设置一个参数时，Java
 	    }
 	}
 
-可以看到，这里实现了接口`ValuedEnum`，同时去除了`fromValue`类方法，`ValuedEnum`接口内容如下，仅声明一个`getValue`方法
+可以看出，该类型实现了接口`ValuedEnum`，同时去除了`fromValue`类方法，`ValuedEnum`接口内容如下，仅声明一个`getValue`方法
 
 	public interface ValuedEnum {
 	    int getValue();
 	}
 
-不再需要为`ProductType`专门定义类型转换器，使用通用转换器`ValuedEnumTypeHanlder`（使用方式同使用内置转换器`EnumOrdinalTypeHandler`），实现参考`EnumOrdinalTypeHandler`源码，实现如下
+不再需要为`ProductType`专属定义类型转换器，使用通用转换器`ValuedEnumTypeHanlder`，使用方式同内置转换器`EnumOrdinalTypeHandler`完全一致。 实现如下
 
 	/**
 	 * Created by sunlin05 on 2015/7/6.
@@ -184,7 +182,7 @@ MyBatis 在预处理语句（PreparedStatement）中设置一个参数时，Java
 	    }
 	}
 
-核心逻辑见构造器，加注释说明如下
+该实现参考`EnumOrdinalTypeHandler`源码，核心逻辑见构造器，加注释说明如下
 
 	// 获取所有枚举值
 	E[] enums = type.getEnumConstants();
@@ -200,4 +198,4 @@ MyBatis 在预处理语句（PreparedStatement）中设置一个参数时，Java
 
 **声明**
 
-此方案由博主在今天日常工作中创造，若有更优秀的实践，请指教
+此方案由博主在今天的工作中创造，若有更优秀的实践，请指教
