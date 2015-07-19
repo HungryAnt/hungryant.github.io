@@ -16,6 +16,16 @@ permalink: /yecai/
 
 [v0.2 beta版 32位 下载地址 百度网盘下载](http://pan.baidu.com/s/1hqzrMp2){:target="_blank"}
 
+### 趣味截图
+
+别管我_让我静静
+
+![别管我_让我静静](http://7xk402.com1.z0.glb.clouddn.com/blog_v_0_2_funny_01.jpg)
+
+囤积食物
+
+![囤积食物](http://7xk402.com1.z0.glb.clouddn.com/blog_v_0_2_funny_02.png)
+
 ## Ant版野菜部落v0.1 beta版发布
 
 骚年们，快快下载，重温下童年的记忆吧
