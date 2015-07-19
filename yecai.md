@@ -4,15 +4,26 @@ title: Ant版野菜部落
 permalink: /yecai/
 ---
 
+## Ant版野菜部落v0.2 beta版发布
+
+本次发布 32位/64位 两个版本，之前部分网友反馈游戏无法启动，可下载32位版本
+
+移动控制改为鼠标左键
+
+输入数字键2 可以进入 小学地图，小学地图附带3个场景，进入跳转区域后左键跳转
+
+[v0.2 beta版 64位 下载地址 百度网盘下载](http://pan.baidu.com/s/1i38dnM1){:target="_blank"}
+
+[v0.2 beta版 32位 下载地址 百度网盘下载](http://pan.baidu.com/s/1hqzrMp2){:target="_blank"}
+
 ## Ant版野菜部落v0.1 beta版发布
 
 骚年们，快快下载，重温下童年的记忆吧
 
-[下载地址 百度网盘下载](http://pan.baidu.com/s/1pJxH4kN){:target="_blank"}
+[v0.1 beta版 64位 下载地址 百度网盘下载](http://pan.baidu.com/s/1pJxH4kN){:target="_blank"}
 
 附上游戏截图
 ![截图1](http://7xk402.com1.z0.glb.clouddn.com/blog_v_0_1_play_screen_01.png)
-![截图2](http://7xk402.com1.z0.glb.clouddn.com/blog_v_0_1_play_screen_02.png)
 
-[下载地址 百度网盘下载](http://pan.baidu.com/s/1pJxH4kN){:target="_blank"}
+![截图2](http://7xk402.com1.z0.glb.clouddn.com/blog_v_0_1_play_screen_02.png)
 
