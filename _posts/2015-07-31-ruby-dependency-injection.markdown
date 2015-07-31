@@ -42,7 +42,7 @@ init_dependency_injection方法在程序入口处调用
 
 代码解析
 
-初始化ico容器 `map = {}`
+初始化ioc容器 `map = {}`
 
 向内核类型中添加扩展方法`get_instance`(所谓的`monkey hook`)，
 
