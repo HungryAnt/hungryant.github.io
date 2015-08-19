@@ -6,7 +6,29 @@ permalink: /yecai/
 
 # 童年游戏记忆 - Ant版野菜部落
 
-后续会考虑升级为网络版，望多多支持！ 加QQ群：475143537
+望多多支持！ 加QQ群：475143537
+
+## v0.4 beta版发布 网络版!!! 2015-8-19
+
+1. 彻底改版为网络版
+
+2. 兼容性提升，支持XP系统
+
+3. 进入游戏首页面可设置用户名，角色随机选择
+
+4. 服务端食物生成系统，食物信息所有人共享，争夺食物吧（F键可丢弃食物）
+
+[贴吧宣传贴](http://tieba.baidu.com/p/3980236576){:target="_blank"}
+
+[v0.4.0 beta版 XP系统 下载地址 百度网盘下载](http://pan.baidu.com/s/1pJ89icj){:target="_blank"}
+
+[v0.4.0 beta版 win7以上系统 64位 下载地址 百度网盘下载](http://pan.baidu.com/s/1sjHs6TZ){:target="_blank"}
+
+### 截图
+
+![学校教室截图](http://7xk402.com1.z0.glb.clouddn.com/blog_v_0_4_0_school.png)
+
+![礼拜堂截图](http://7xk402.com1.z0.glb.clouddn.com/blog_v_0_4_0_church.png)
 
 ## v0.3 beta版发布 2015-7-21
 
