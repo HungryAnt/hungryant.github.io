@@ -8,14 +8,17 @@ permalink: /yecai/
 
 望多多支持！ 加QQ群：475143537
 
+## v0.4.2 beta版发布 2015-8-22
+
+Bug修复
+
+[v0.4.2 beta兼容版 下载地址 百度网盘下载](http://pan.baidu.com/s/1kTxmnqB)
+
 ## v0.4.1 beta版发布 2015-8-22
 
 1. 用户数据(等级/经验)存储于服务器
 
 2. Bug修复 细节改善
-
-[v0.4.1 beta兼容版 下载地址 百度网盘下载](http://pan.baidu.com/s/1dDsEFLZ)
-
 
 ## v0.4 beta版发布 网络版!!! 2015-8-19
 
@@ -28,10 +31,6 @@ permalink: /yecai/
 4. 服务端食物生成系统，食物信息所有人共享，争夺食物吧（F键可丢弃食物）
 
 [贴吧宣传贴](http://tieba.baidu.com/p/3980236576){:target="_blank"}
-
-[v0.4.0 beta版 XP系统 下载地址 百度网盘下载](http://pan.baidu.com/s/1pJ89icj){:target="_blank"}
-
-[v0.4.0 beta版 win7以上系统 64位 下载地址 百度网盘下载](http://pan.baidu.com/s/1sjHs6TZ){:target="_blank"}
 
 ### 截图
 
