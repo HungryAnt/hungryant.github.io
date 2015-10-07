@@ -30,7 +30,7 @@ An HTTP client API for Ruby.
 		res = Net::HTTP.post_form(uri, 'q' => 'ruby', 'max' => '50')
 		puts res.body
 
-详细内容请参见 [官方文档](http://ruby-doc.org/stdlib-2.0.0/libdoc/net/http/rdoc/Net/HTTP.html)
+详细内容请参见 [官方文档](http://ruby-doc.org/stdlib-2.0.0/libdoc/net/http/rdoc/Net/HTTP.html){:target="_blank"}
 
 ## Ruby实战-封装易于使用的HttpClient
 
