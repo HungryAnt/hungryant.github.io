@@ -1,0 +1,42 @@
+---
+layout: post
+title:  "Ant版野菜部落0.6.0版本发布"
+date:   2015-10-02 00:00:00
+categories: game
+author: 麟大大
+---
+
+童年游戏记忆 - Ant版野菜部落
+
+欢迎加入Ant版野菜部落交流活跃Q群 20977325， 活跃Q群 20977325， 活跃Q群 20977325 重要的事情说三遍
+
+## v0.6.0 beta版发布 2015-10-2
+
+版本更新：
+
+1. 垃圾拾取功能，除了满地图觅食，还可以满地图捡垃圾（垃圾还可以在商店兑换成货币）
+2. 四张新地图（牛拉车、鸡舍、鬼屋、雨天）
+3. 新增车辆样式
+4. 货币系统、商店 购车系统
+
+... 等等
+
+请在群文件中下载yecaigame_0_6_0_beta.rar
+
+新版本rar压缩包解压后，大家记得拷贝user.dat文件进来，随后启动游戏
+
+[v0.6.0贴吧宣传贴](http://tieba.baidu.com/p/4080464497){:target="_blank"}
+
+### 截图
+
+![鬼屋截图](http://7xk402.com1.z0.glb.clouddn.com/yecai_0_6_screenshot_0.png)
+
+![鬼屋截图2](http://7xk402.com1.z0.glb.clouddn.com/yecai_0_6_screenshot_1.png)
+
+![鸡舍](http://7xk402.com1.z0.glb.clouddn.com/yecai_0_6_screenshot_2.png)
+
+![牛舍](http://7xk402.com1.z0.glb.clouddn.com/yecai_0_6_screenshot_3.png)
+
+![牛拉车](http://7xk402.com1.z0.glb.clouddn.com/yecai_0_6_screenshot_4.png)
+
+![雨天](http://7xk402.com1.z0.glb.clouddn.com/yecai_0_6_screenshot_5.png)

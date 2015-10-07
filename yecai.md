@@ -6,14 +6,37 @@ permalink: /yecai/
 
 # 童年游戏记忆 - Ant版野菜部落
 
-望多多支持！ 加QQ群：475143537
+欢迎加入Ant版野菜部落交流活跃Q群 20977325， 活跃Q群 20977325， 活跃Q群 20977325 重要的事情说三遍
+
+## v0.6.0 beta版发布 2015-10-2
+
+[v0.6.0 beta版 百度网盘下载](http://pan.baidu.com/s/1c04oWtM){:target="_blank"}
+
+版本更新：
+
+1. 垃圾拾取功能，除了满地图觅食，还可以满地图捡垃圾（垃圾还可以在商店兑换成货币）
+2. 四张新地图（牛拉车、鸡舍、鬼屋、雨天）
+3. 新增车辆样式
+4. 货币系统、商店 购车系统
+
+... 等等
+
+请在群文件中下载yecaigame_0_6_0_beta.rar
+
+新版本rar压缩包解压后，大家记得拷贝user.dat文件进来，随后启动游戏
+
+[v0.6.0贴吧宣传贴](http://tieba.baidu.com/p/4080464497){:target="_blank"}
+
+![鸡舍](http://7xk402.com1.z0.glb.clouddn.com/yecai_0_6_screenshot_2.png)
+
+[更多截图](/game/2015/10/02/ant-yecai-0-6-0.html){:target="_blank"}
 
 ## v0.4.2 beta版发布 2015-8-22
 
 Bug修复
 
 [v0.4.2 beta兼容版 下载地址 百度网盘下载](http://pan.baidu.com/s/1kTxmnqB)
-
+309738a4-d0ae-49e5-a37d-0ce2c5156101
 ## v0.4.1 beta版发布 2015-8-22
 
 1. 用户数据(等级/经验)存储于服务器
