@@ -8,8 +8,6 @@
 - 简单易用，开发效率
 - 优雅的语法，易于阅读与编写
 
-开发者们认为Ruby是一个美丽精巧的语言，同时，也是个灵活实用的语言
-
 ### Ruby的诞生
 
 在20世纪90年代由日本人松本行弘(Yukihiro Matsumoto "Matz")开发
@@ -19,6 +17,16 @@
 > He has often said that he is “trying to make Ruby natural, not simple,” in a way that mirrors life.
 
 > Ruby is simple in appearance, but is very complex inside, just like our human body.
+
+###　开发者对Ruby的评价
+
+开发者们认为Ruby是一个美丽精巧的语言，同时，也是个灵活实用的语言
+
+对于Ruby有意思的评价
+
+> 现在如果只使用Java，就感觉像拿着一根香蕉参加一场决斗，而我的对手挥舞着一把半人长的日本刀。
+
+Ruby就是这把日本刀
 
 
 ## Ruby语法
