@@ -287,3 +287,117 @@ rows_with_country与to_csv是幽灵方法，Table中method_missing实现如下
 
 #### 来自OpenStruct的例子
 
+OpenStruct来自于Ruby标准库。一个OpenStruct对象，如果需要一个新属性只需要直接它赋个值即可
+
+	require 'ostruct'
+
+	user = OpenStruct.new
+	user.id = 123
+	user.name = 'Ant'
+
+	puts "#{user.id} #{user.name}"
+
+其内部使用了method_missing，属性其实是幽灵方法
+
+实现一个简化版的开放结构类
+
+	class MyOpenStruct
+	  def initialize
+	    @attributes = {}
+	  end
+
+	  def method_missing(name, *args)
+	    attribute = name.to_s
+	    if attribute =~ /=$/
+	      @attributes[attribute.chop] = args[0]
+	    else
+	      @attributes[attribute]
+	    end
+	  end
+	end
+
+	user = MyOpenStruct.new
+	user.id = 123
+	user.name = 'Ant'
+
+	puts "#{user.id} #{user.name}"
+
+#### 再一次重构Computer类
+
+	class Computer
+	  def initialize(computer_id, data_source)
+	    @id = computer_id
+	    @data_source = data_source
+	  end
+
+	  def method_missing(name, *args)
+	    info = @data_source.send "get_#{name}_info", @id
+	    price = @data_source.send "get_#{name}_price", @id
+	    result = "#{name.to_s.capitalize}: #{info} ($#{price})"
+	    return " * #{result}" if price >= 100
+	    result
+	  end
+	end
+
+	computer = Computer.new(1, DS.new)
+	puts computer.mouse
+	puts computer.cpu
+	puts computer.keyboard
+	#　puts computer.display
+
+#### 狩猎bug
+
+	class Roulette
+	  def method_missing(name, *args)
+	    person = name.to_s.capitalize
+	    3.times do
+	      number = rand(10) + 1
+	      puts "#{number}"
+	    end
+	    "#{person} got a #{number}"
+	  end
+	end
+
+	number_of = Roulette.new
+	puts number_of.bob
+	puts number_of.frank
+
+
+#### 方法冲突
+
+代码
+
+	puts computer.display  # => #<Computer:0x0000000284bc80>
+
+通过irb执行如下语句，可以看到Object中已经存在有display方法
+
+	irb(main):007:0> Object.instance_methods.grep /^d/
+	=> [:dup, :display, :define_singleton_method]
+
+#### 将Computer类重构为白板类
+
+方案一
+
+	class Computer
+	  instance_methods.each do |m|
+	    undef_method m unless m.to_s =~ /^__|method_missing|respond_to?/
+	  end
+
+方案二
+
+从Ruby1.9开始，白板技术被集成到语言自身中，Object类有一个名叫BasicObject的超类
+
+	class Computer < BasicObject
+
+#### 性能方面的忧虑
+
+幽灵方法，命名冲突和神秘的bug，一些人还会加上一个缺点：总体而言，使用幽灵方法比使用普通该方法要慢，因为调用幽灵方法查账的路径一般要更长些
+
+某些情况下，你需要意识到这种性能问题，但这通常不是什么大问题。为了避免猜来猜去，在你过于担心是否需要优化之前，最好先用性能分析器测试你的代码。
+
+
+### 小结
+
+在其他语言中，习惯于在方法内部发现并消除其重复性，在Ruby中，发现并消除方法之间的重复性
+
+其他语言中，通过常规面向对象思想来消除重复，Ruby中，则同时可以借助元编程的力量来消除重复
