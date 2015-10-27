@@ -25,7 +25,7 @@ GameService 又依赖其他三个Service中的方法
 
 ## Ruby实现依赖注入 第一版 快速实现
 
-	def init_dependency_injection
+	lambda {
 	  map = {}
 
 	  Kernel.send :define_method, :get_instance do |clazz|
@@ -36,9 +36,7 @@ GameService 又依赖其他三个Service中的方法
 	    end
 	    instance
 	  end
-	end
-
-init_dependency_injection方法在程序入口处调用
+	}.call
 
 代码解析
 
@@ -62,7 +60,7 @@ PlayerService中如何使用UserService，代码如下
 
 我觉得使用上还可以更方便些，类似spring mvc中通过注解进行依赖注入，向Kernal中补充autowired方法
 
-	def init_dependency_injection
+	lambda {
 	  map = {}
 
 	  Kernel.send :define_method, :get_instance do |clazz|
@@ -80,7 +78,7 @@ PlayerService中如何使用UserService，代码如下
 	      instance_variable_set("@#{underscore_class_name}", get_instance(clazz))
 	    end
 	  end
-	end
+	}.call
 
 使用方式如下
 

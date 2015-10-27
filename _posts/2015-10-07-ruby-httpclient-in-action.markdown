@@ -130,7 +130,7 @@ HttpClientFactory.create代码如下，创建HttpClient实例，参数为后台�
 	    def delete
 	      uri = get_uri
 	      req = Net::HTTP::Delete.new(uri)
-	      execute(uri, req, body)
+	      execute(uri, req, nil)
 	    end
 
 	    private
@@ -151,3 +151,29 @@ HttpClientFactory.create代码如下，创建HttpClient实例，参数为后台�
 	    end
 	  end
 	end
+
+2015-10-27 对HttpClient稍作改进，去除get post等方法中的重复代码，相同逻辑至于run方法中
+
+	    def get
+	      run Net::HTTP::Get
+	    end
+
+	    def put(body=nil)
+	      run Net::HTTP::Put, body
+	    end
+
+	    def post(body=nil)
+	      run Net::HTTP::Post, body
+	    end
+
+	    def delete
+	      run Net::HTTP::Delete
+	    end
+
+	    private
+
+	    def run(clazz, body=nil)
+	      uri = get_uri
+	      req = clazz.new(uri)
+	      execute(uri, req, body)
+	    end
