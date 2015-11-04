@@ -82,7 +82,7 @@ Ruby中，契约方法不再是问题
 那时我还是个年轻的开发者，正在学习C++，我的导师告诉我，当你调用一个方法时，实际上是给一个对象发送了一条消息。
 
 	class MyClass
-	  def my_mythod(my_arg)
+	  def my_method(my_arg)
 	    my_arg * 2
 	  end
 	end
@@ -127,7 +127,7 @@ Test::Unit标准库使用一个命名管理来判定哪些方法时测试方法
 Module#define_method()
 
 	class MyClass
-	  define_method :my_mythod do |my_arg|
+	  define_method :my_method do |my_arg|
 	    my_arg * 2
 	  end
 	end

@@ -1,3 +1,5 @@
+gems: [jekyll-paginate]
+
 # Site settings
 title: 麟大大的程序世界
 email: ljsunlin@126.com
@@ -20,3 +22,5 @@ author: 麟大大
 
 paginate: 10
 paginate_path: "page:num"
+
+port: 51730
