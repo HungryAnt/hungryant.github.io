@@ -68,7 +68,7 @@ _本人重点关注如何将程序快速优雅实现出来，不空谈设计_
 
     `ShowWindowAsync`对窗体执行“恢复”操作，若窗口被隐藏或者被最小化，此方法可以将窗口恢复到面板中
 
-    `SetForegroundWindow`顾名思义将创建置于最上层
+    `SetForegroundWindow`顾名思义将窗口置于最上层
 
     封装在NativeWindowApiHelper静态类型中，实现如下
 
