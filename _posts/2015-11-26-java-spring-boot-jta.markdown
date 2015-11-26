@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "基于spring boot项目的多数据源配置与分布式事务处理总结"
-date:   2015-11-26 18:36:20
-categories: java jta spring
+date:   2015-11-26 08:36:20
+categories: java
 ---
 
 ## 多数据源配置
@@ -364,7 +364,7 @@ http://spring.io/blog/2011/08/15/configuring-spring-and-jta-without-full-java-ee
 
 确保分布式事务正确有效执行，对多数据源数据操作实施单测验证
 
-默认Embedded数据库不支持分布式事务，扩展方式见下一小节，也可本地可搭建mysql服务，验证正确性
+默认Embedded数据库不支持分布式事务，扩展方式见下一小节，也可本地搭建mysql服务进行验证
 
 **单测**
 

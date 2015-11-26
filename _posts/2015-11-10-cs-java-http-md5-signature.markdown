@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "C#与Java服务通过Http协议通讯实例"
-date:   2015-11-09 00:00:00
+date:   2015-11-10 00:00:00
 categories: csharp
 ---
 

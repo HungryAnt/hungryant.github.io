@@ -21,7 +21,7 @@ ruby-mysql库是一个纯ruby版本的MsSQL connector
 
 	require 'mysql'
 
-## ruby实现数据库连接池
+## ruby实现数据库连接池 [**请移步新版本实现 ruby实战-mysql数据库共享连接池实现**](/ruby/2015/11/26/ruby-mysql-shared-pool.html)
 
 基于ruby-mysql，使用ruby开发一个简单的数据库连接池易如反掌，这里给出一个实现方案，应用于本人的游戏服务器端
 
