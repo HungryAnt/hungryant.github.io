@@ -39,47 +39,53 @@ get到几点重要信息：
 
 ### 建表sql
 
-    CREATE TABLE `user_id_sequence` (
-        `id` bigint(20) NOT NULL AUTO_INCREMENT,
-        `stub` char(1) NOT NULL,
-        PRIMARY KEY  (`id`),
-        UNIQUE KEY `idx_stub` (`stub`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```sql
+CREATE TABLE `user_id_sequence` (
+    `id` bigint(20) NOT NULL AUTO_INCREMENT,
+    `stub` char(1) NOT NULL,
+    PRIMARY KEY  (`id`),
+    UNIQUE KEY `idx_stub` (`stub`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-    CREATE TABLE `code_id_sequence` (
-        `id` bigint(20) NOT NULL AUTO_INCREMENT,
-        `stub` char(1) NOT NULL,
-        PRIMARY KEY  (`id`),
-        UNIQUE KEY `idx_stub` (`stub`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `code_id_sequence` (
+    `id` bigint(20) NOT NULL AUTO_INCREMENT,
+    `stub` char(1) NOT NULL,
+    PRIMARY KEY  (`id`),
+    UNIQUE KEY `idx_stub` (`stub`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
 ### IdGeneratorMapper接口
 
-    public interface IdGeneratorMapper {
-        int count(@Param("tableName") String tableName);
-        void clear(@Param("tableName") String tableName);
-        void generate(IdHolder idHolder);
-    }
+```java
+public interface IdGeneratorMapper {
+    int count(@Param("tableName") String tableName);
+    void clear(@Param("tableName") String tableName);
+    void generate(IdHolder idHolder);
+}
+```
 
 ### IdGeneratorMapper.xml
 
-    <?xml version="1.0" encoding="UTF-8" ?>
-    <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    <mapper namespace="com.baidu.bce.finance.fundpool.biz.mapper.IdGeneratorMapper">
-        <delete id="clear">
-            DELETE FROM ${tableName}
-        </delete>
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baidu.bce.finance.fundpool.biz.mapper.IdGeneratorMapper">
+    <delete id="clear">
+        DELETE FROM ${tableName}
+    </delete>
 
-        <select id="count" resultType="int">
-            SELECT COUNT(*) FROM ${tableName}
-        </select>
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM ${tableName}
+    </select>
 
-        <insert id="generate" useGeneratedKeys="true" keyProperty="id">
-            REPLACE INTO ${tableName} (stub) VALUES ('a')
-        </insert>
-    </mapper>
+    <insert id="generate" useGeneratedKeys="true" keyProperty="id">
+        REPLACE INTO ${tableName} (stub) VALUES ('a')
+    </insert>
+</mapper>
+```
 
 不同数据的id升级，需要使用到不同的表，表结构相同，因此将表明参数化
 
@@ -87,45 +93,49 @@ get到几点重要信息：
 
 提供两种数据id生成方法
 
-    @Service
-    public class IdGeneratorServiceImpl implements IdGeneratorService {
+```java
+@Service
+public class IdGeneratorServiceImpl implements IdGeneratorService {
 
-        @Autowired
-        private IdGeneratorMapper idGeneratorMapper;
+    @Autowired
+    private IdGeneratorMapper idGeneratorMapper;
 
-        private static final String TABLE_USER_ID_SEQUENCE = "user_id_sequence";
-        private static final String TABLE_CODE_ID_SEQUENCE = "code_id_sequence";
+    private static final String TABLE_USER_ID_SEQUENCE = "user_id_sequence";
+    private static final String TABLE_CODE_ID_SEQUENCE = "code_id_sequence";
 
-        @Transactional
-        @Override
-        public long genUserId() {
-            return genId(TABLE_USER_ID_SEQUENCE);
-        }
-
-        @Transactional
-        @Override
-        public long genCodeId() {
-            return genId(TABLE_CODE_ID_SEQUENCE);
-        }
-
-        private long genId(final String tableName) {
-            IdHolder idHolder = new IdHolder() {
-                {
-                    setTableName(tableName);
-                }
-            };
-            idGeneratorMapper.generate(idHolder);
-            return idHolder.getId();
-        }
+    @Transactional
+    @Override
+    public long genUserId() {
+        return genId(TABLE_USER_ID_SEQUENCE);
     }
+
+    @Transactional
+    @Override
+    public long genCodeId() {
+        return genId(TABLE_CODE_ID_SEQUENCE);
+    }
+
+    private long genId(final String tableName) {
+        IdHolder idHolder = new IdHolder() {
+            {
+                setTableName(tableName);
+            }
+        };
+        idGeneratorMapper.generate(idHolder);
+        return idHolder.getId();
+    }
+}
+```
 
 `IdHolder`即用作表名称参数的传递，也用作获取id值
 
-    @Data
-    public class IdHolder {
-        private long id;
-        private String tableName;
-    }
+```java
+@Data
+public class IdHolder {
+    private long id;
+    private String tableName;
+}
+```
 
 关于`@Data`注解，目的是自动生成`get`/`set`，请查阅 Lombok相关资料
 
@@ -137,28 +147,30 @@ get到几点重要信息：
 
 因此编写mock类
 
-    @Service
-    @Primary
-    public class IdGeneratorServiceMock implements IdGeneratorService {
-        private Map<String, Long> idMap = new HashMap<>();
+```java
+@Service
+@Primary
+public class IdGeneratorServiceMock implements IdGeneratorService {
+    private Map<String, Long> idMap = new HashMap<>();
 
-        @Override
-        public long genUserId() {
-            return genId("UserId");
-        }
-
-        @Override
-        public long genCodeId() {
-            return genId("CodeId");
-        }
-
-        private long genId(final String name) {
-            Long id = idMap.get(name);
-            if (id == null) {
-                id = 0L;
-            }
-            ++id;
-            idMap.put(name, id);
-            return id;
-        }
+    @Override
+    public long genUserId() {
+        return genId("UserId");
     }
+
+    @Override
+    public long genCodeId() {
+        return genId("CodeId");
+    }
+
+    private long genId(final String name) {
+        Long id = idMap.get(name);
+        if (id == null) {
+            id = 0L;
+        }
+        ++id;
+        idMap.put(name, id);
+        return id;
+    }
+}
+```
