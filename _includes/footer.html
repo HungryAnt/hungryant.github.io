@@ -15,7 +15,7 @@
       <div class="footer-col  footer-col-2">
         <ul class="social-media-list">
           {% if site.github_username %}
-          <li>
+          <!--<li>
             <a href="https://github.com/{{ site.github_username }}">
               <span class="icon  icon--github">
                 <svg viewBox="0 0 16 16">
@@ -24,6 +24,17 @@
               </span>
 
               <span class="username">{{ site.github_username }}</span>
+            </a>
+          </li>-->
+          {% endif %}
+
+          {% if site.qq %}
+          <li>
+            <a target="blank" href="tencent://message/?uin={{ site.qq }}&Site=麟大大的程序世界&Menu=yes">
+              <span class="username">QQ:{{ site.qq }}</span>
+              <span class="icon">
+                <img src="/image/qq.gif">
+              </span>
             </a>
           </li>
           {% endif %}
