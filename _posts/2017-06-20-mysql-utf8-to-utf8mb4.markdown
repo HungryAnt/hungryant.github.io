@@ -5,15 +5,15 @@ date:   2017-06-20 14:01:30 +0800
 categories: mysql
 ---
 
-### 问题描述及解决方案
-
 emoji表情的utf8编码占用4字节，而5.5以下版本的mysql支持的utf8编码，仅支持使用3字节，遇到4字节字符插入操作会直接报错
 
 解决方案为升级mysql至5.5以上版本，配置mysql使用utf8mb4编码，历史数据进行编码转换
 
 亲测 Windows Linux 阿里云RDS 均可支持，服务端程序无需做代码调整
 
-### 升级mysql及更新配置
+具体操作步骤如下
+
+## 升级mysql及更新配置
 
 将mysql版本升级到5.5以上，以支持utf8mb4编码
 
@@ -103,21 +103,23 @@ mariadb是mysql的开源版本，推荐使用
             systemctl restart mariadb
 
         查看当前字符集
-
-            mariadb root@localhost:(none)> SHOW VARIABLES LIKE 'character_set_%';
-            Reconnecting...
-            +--------------------------+----------------------------+
-            | Variable_name            | Value                      |
-            |--------------------------+----------------------------|
-            | character_set_client     | utf8                       |
-            | character_set_connection | utf8                       |
-            | character_set_database   | utf8mb4                    |
-            | character_set_filesystem | binary                     |
-            | character_set_results    | utf8                       |
-            | character_set_server     | utf8mb4                    |
-            | character_set_system     | utf8                       |
-            | character_sets_dir       | /usr/share/mysql/charsets/ |
-            +--------------------------+----------------------------+
+        
+        ```sql
+        mariadb root@localhost:(none)> SHOW VARIABLES LIKE 'character_set_%';
+        Reconnecting...
+        +--------------------------+----------------------------+
+        | Variable_name            | Value                      |
+        |--------------------------+----------------------------|
+        | character_set_client     | utf8                       |
+        | character_set_connection | utf8                       |
+        | character_set_database   | utf8mb4                    |
+        | character_set_filesystem | binary                     |
+        | character_set_results    | utf8                       |
+        | character_set_server     | utf8mb4                    |
+        | character_set_system     | utf8                       |
+        | character_sets_dir       | /usr/share/mysql/charsets/ |
+        +--------------------------+----------------------------+
+        ```
         
         看到`character_set_server`为`utf8mb4`，说明修改成功
 
@@ -127,24 +129,30 @@ mariadb是mysql的开源版本，推荐使用
 
         进入实例页面，点击左侧导航栏进入“参数设置”页面，参数名：`character_set_server`，运行参数值默认为`utf8`，将其修改为`utf8mb4`，点击右上方提交参数，实例稍后将重启支持新的编码
 
-### 现有数据升级支持utf8mb4编码
+## 现有数据升级支持utf8mb4编码
 
 对于现有的数据库及所有的数据表，进行编码转换，执行如下sql指令
 
 数据库编码转换
-    
-    ALTER DATABASE database_name CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci;
+
+```sql
+ALTER DATABASE database_name CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci;
+```
 
 数据表编码转换
 
-    ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+```sql
+ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+```
 
 对于新数据表，在创建时指定使用utf8mb4编码，例如：
-   
-    CREATE TABLE `users` (
-    `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
-    `nickname` VARCHAR(32) NOT NULL COMMENT '昵称',
-    PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户';
+
+```sql
+CREATE TABLE `users` (
+`id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+`nickname` VARCHAR(32) NOT NULL COMMENT '昵称',
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户';
+```
 
 使用阿里云rds注意下，经过编码转换后，使用`SHOW CREATE TABLE table_name`查看建表语句，部分表仍旧会展示`DEFAULT CHARSET=utf8`，观察发现这些表有个共同点，本省没有字符串列，猜测与RDS实现有关，可忽略
